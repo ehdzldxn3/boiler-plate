@@ -3,16 +3,34 @@ const express = require('express')
 const app = express()
 const port = 5000
 
-//몽고디비 설정
+//config에 있는 몽고디비 정보
+const config = require('./config/key')
+
+//몽고디비 
 const mongoose = require('mongoose')
-//몽고 디비 연결
-mongoose.connect
-('mongodb+srv://kang:0218@boilerplate.zyawb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+mongoose.connect (config.monggoURI)
 .then( () => console.log('MongoDB Connected…'))
 .catch(err => console.log(err))
 
+//user  가져오기
+const {User} = require('./models/User')
+
+
+
 app.get('/', (req, res) => {
   res.send('Hello World!')
+})
+
+app.post('/register', (req, res) => {
+  //회원가입 필요한 정보 가져와서 DB에 저장한다
+  const user = new User(req.body)
+  
+  user.save((err, userInfo) => {
+    if(err) return res.json({success: false})
+    return res.status(200).json({
+      success: true
+    })
+  })
 })
 
 app.listen(port, () => {
