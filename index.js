@@ -21,6 +21,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
+
 app.post('/register', (req, res) => {
   //회원가입 필요한 정보 가져와서 DB에 저장한다
   const user = new User(req.body)
