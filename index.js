@@ -8,7 +8,7 @@ const port = 5000
 //config에 있는 몽고디비 정보
 const config = require('./config/key')
 
-//몽고디비 
+//몽고디비 연결
 const mongoose = require('mongoose')
 mongoose.connect (config.monggoURI)
 .then( () => console.log('MongoDB Connected…'))
@@ -27,6 +27,27 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
+
+app.post('/login', (req, res) => {
+  //요청된 email DB 찾는다.
+  User.findOne({emil: req.body.emil}, (err, user) => {
+    if(!user){
+      return res.json({
+        loginSuccess: false,
+        msg: '존재하지 않는 계정입니다.'
+      })
+    }
+    //요청된 이메일이 DB에 있다면 비밀번호가 맞는지 확인
+    user.comparePW(req.body.password, (err, isMatch)=>{
+      if(!isMatch)
+      return res.json({loginSuccess:false, message: '비밀번호가 틀렸습니다.'})
+      //비밀번호까지 맞다면 토큰을 생성한다.
+      user.token((err, user) => {
+
+      })
+    })
+  })
+})
 
 app.post('/register', (req, res) => {
   //회원가입 필요한 정보 가져와서 DB에 저장한다

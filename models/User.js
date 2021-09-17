@@ -2,8 +2,6 @@ const mongoose = require('mongoose')
 
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-const myPlaintextPassword = 's0/\/\P4$$w0rD';
-const someOtherPlaintextPassword = 'not_bacon';
 
 
 
@@ -64,6 +62,14 @@ userSchema.pre('save', function(next){
         next()
     }
 })
+
+userSchema.methods.comparePW = function(pw, cb){
+    //
+    bcrypt.compare(pw,this.password, function(err, isMatch){
+        if(err) return cb(err),
+        cb(null, isMatch)
+    })
+}
 const User = mongoose.model('User', userSchema)
 
 module.exports = {User}
