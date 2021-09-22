@@ -78,22 +78,34 @@ userSchema.methods.comparePW = function (pw, cb)  {
     })
 }
 
+
 //토큰생성
 userSchema.methods.generateToken = function (cb)  {
     var user = this
     
     //jsonWebToken을 이용해서 토큰을 생선한다
-    var token = jwt.sign(user._id.toHexString(), 'secretToken')
+    var token = jwt.sign(user._id.toString(), 'secret')
     
     user.token = token
 
+    //몽고DB에 token을 저장하면서 user을 리턴시킨다.
     user.save(function(err, user){
         if(err) return cb(err)
         cb(null, user);
     })
 }
 
-//User라는 이름으로 
+userSchema.statics.findByToken = function(token, cb) {
+    var user = this
+    jwt.verify(token, 'secret', function (err, decoded) {
+        user.findOne({"_id": decoded, "token": token}, function(err, user) {
+            if(err) return cb(err)
+            cb(null, user)
+        })
+    })
+}
+
+//User라는 이름으로  스키마를 모델로 감싼다
 const User = mongoose.model('User', userSchema)
 
 //밖에서도 쓰려고 하는 설정
