@@ -9,14 +9,14 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path='/'>
-          <div>asdf</div>
-        </Route>  
-          {/* 로그인 */}
-          <Route path='/login'>
-            <LoginPage/>
-          </Route>
+        {/* 메인페이지 */}
+        <Route exact path='/' component={LandingPage} />
 
+        {/* 로그인페이지 */}
+        <Route path='/login' component={LoginPage} />
+
+        {/*  */}
+        <Route path='/register' component={RegisterPage} />
 
 
       </Switch>
