@@ -9,6 +9,7 @@ function App() {
   return (
     <Router>
       <Switch>
+
         {/* 메인페이지 */}
         <Route exact path='/' component={LandingPage} />
 
@@ -17,7 +18,6 @@ function App() {
 
         {/*  */}
         <Route path='/register' component={RegisterPage} />
-
 
       </Switch>
     </Router>
