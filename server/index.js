@@ -7,6 +7,10 @@ const port = 5000
 
 //임포트#######
 
+//CORS
+//const cors = require('cors');
+
+
 //쿠키
 const cookieParser = require('cookie-parser')
 
@@ -33,6 +37,8 @@ mongoose.connect (config.monggoURI)
 app.use(express.json());
 //쿠기 사용하기위한 설정
 app.use(cookieParser())
+//CORS
+//app.use(cors());
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
@@ -40,7 +46,7 @@ app.listen(port, () => {
 
 
 //test
-app.get('/', (req, res) => {
+app.get('/api/hello', (req, res) => {
   res.send('Hello World!')
 })
 
