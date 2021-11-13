@@ -1,7 +1,7 @@
 import React, {useEffect, } from 'react'
 import axios from 'axios'
 
-function LandingPage() {
+export default function LandingPage() {
 
     useEffect(() => {
         axios.get('http://localhost:5000/api/hello')      
@@ -9,10 +9,13 @@ function LandingPage() {
     }, [])
 
     return (
-        <div>
-            LandingPage
+        <div style={{
+            display: 'flex', justifyContent: 'center', alignItems: 'center',
+            width: '100%', height:'100vh'
+        }}>
+            시작 페이지
         </div>
     )
 }
 
-export default LandingPage
+ 
