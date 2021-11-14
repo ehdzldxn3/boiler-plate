@@ -1,7 +1,5 @@
 import React, { useState, } from 'react'
-import { Axios } from 'axios'
 import { useDispatch } from 'react-redux'
-import bodyParser from 'body-parser'
 import { loginUser } from '../../../_actions/user_action'
 
 export default function LoginPage(props) {
@@ -29,12 +27,13 @@ export default function LoginPage(props) {
             password : Password
         }
         //액션
+        
         dispatch(loginUser(body))
             .then(response => {
                 if( response.payload.loginSuccess ){
                     props.history.push('/')
                 } else {
-                    alert('Error')
+                    console.log('에러')
                 }
             })
 
@@ -49,7 +48,7 @@ export default function LoginPage(props) {
             <form style={{display: 'flex', flexDirection: 'column'}}
                 onSubmit={onSubmitHandler}>
                 <label>Email</label>
-                <input type="email" value={Email} onChange={onEmailHandler}/>
+                <input type="text" value={Email} onChange={onEmailHandler}/>
                 <label>Password</label>
                 <input type="password" value={Password} onChange={onPasswordHandler}/>
                 <br/>
