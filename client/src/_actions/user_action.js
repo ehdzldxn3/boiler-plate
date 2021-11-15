@@ -9,7 +9,7 @@ export function loginUser(dataToSubmit) {
         .then(res =>  res.data)
     return {
         type : LOGIN_USER,
-        payload : req
+        res : req
     }
 }
 
@@ -19,6 +19,6 @@ export function signUp(dataToSubmit) {
         .then(res =>  res.data)
     return {
         type : USER_SIGNUP,
-        payload : req
+        res : req
     }
 }
