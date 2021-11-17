@@ -1,5 +1,5 @@
 import { 
-    LOGIN_USER, USER_SIGNUP,
+    LOGIN_USER, USER_SIGNUP, USER_AUTH,
  } from "../_actions/types";
 
 export default function (state={}, action) {
@@ -14,6 +14,10 @@ export default function (state={}, action) {
             return {...state, signup : action.res}            
             break;
             
+        case USER_AUTH :
+            return {...state, userData: action.res}      
+            break;
+
         default:
             return state;
     }

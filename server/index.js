@@ -89,7 +89,6 @@ app.post('/api/user/login', (req, res) => {
 
 //Auth
 app.get('/api/user/auth', auth, (req, res) => {
-
   //여기까지 미들웨어를 통과해 왔다는 이야기는 
   res.status(200).json({
     _id: req.user._id,

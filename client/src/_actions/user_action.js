@@ -1,6 +1,6 @@
 import axios from "axios";
 import {
-    LOGIN_USER, USER_SIGNUP,
+    LOGIN_USER, USER_SIGNUP, USER_AUTH,
 } from './types'
 
 
@@ -20,5 +20,14 @@ export function signUp(dataToSubmit) {
     return {
         type : USER_SIGNUP,
         res : req
-    }
+    }    
+}
+
+export function auth() {
+    const req = axios.get('/api/user/auth')
+                .then(res => res.data)
+            return{
+                type : USER_AUTH,
+                res : req
+            }
 }
