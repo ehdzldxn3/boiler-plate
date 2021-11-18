@@ -1,26 +1,24 @@
-import React, {useEffect, } from 'react';
-import { useDispatch } from 'react-redux'
-import { auth } from '../_actions/user_action'
+import React, { useEffect } from 'react';
+import { auth } from '../_actions/user_action';
+import { useDispatch } from "react-redux";
 
-
-
-export default function(SpecificComponnet, option, adminRoute = null) {
-
+export default function (SpecificComponent, option, adminRoute = null) {
     function AuthenticationCheck(props) {
-        
-        const disfatch = useDispatch();
+
+        const dispatch = useDispatch();
 
         useEffect(() => {
-            disfatch(auth()).then(res=> {
+
+            dispatch(auth())
+            .then(res => {
                 console.log(res)
             })
 
         }, [])
+
         return (
-            <SpecificComponnet/>
+            <SpecificComponent/>
         )
     }
-
-
     return AuthenticationCheck
 }

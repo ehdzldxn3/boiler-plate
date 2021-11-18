@@ -18,7 +18,7 @@ function App() {
         <Route path='/login' component={Auth(LoginPage, false)} />
 
         {/*  */}
-        <Route path='/register' component={Auth(RegisterPage), false} />
+        <Route path='/register' component={Auth(RegisterPage, false) } />
 
       </Switch>
     </Router>
