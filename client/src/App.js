@@ -3,13 +3,12 @@ import LandingPage from './components/views/LandingPage/LandingPage'
 import LoginPage from './components/views/LoginPage/LoginPage'
 import RegisterPage from './components/views/RegisterPage/RegisterPage'
 import Navbar from './components/views/NavBar/Navbar'
-<<<<<<< HEAD
 import VideoUploadPage from "./components/views/VideoUploadPage/VideoUploadPage";
-=======
 import Auth from './hoc/auth'
 
->>>>>>> kang
 
+
+//asdferahsth
 function App() {
   return (
     
