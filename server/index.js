@@ -51,7 +51,6 @@ app.get('/api/hello', (req, res) => {
 app.post('/api/user/signUp', (req, res) => {
   //회원가입 필요한 정보 가져와서 DB에 저장한다
   const user = new User(req.body)
-  
   user.save((err, userInfo) => {
     if(err) return res.json({success: false})
     return res.status(200).json({
@@ -90,7 +89,6 @@ app.post('/api/user/login', (req, res) => {
 
 //Auth
 app.get('/api/user/auth', auth, (req, res) => {
-
   //여기까지 미들웨어를 통과해 왔다는 이야기는 
   res.status(200).json({
     _id: req.user._id,
@@ -110,9 +108,9 @@ app.get('/api/user/logout', auth, (req, res) => {
   User.findOneAndUpdate({_id: req.user._id},
     {token: ""},
     (err, user) => {
-      if (err) return res.json({seccess:false, err})
+      if (err) return res.json({success:false, err})
       return res.status(200).send({
-        seccess: true
+        success: true
       })
     })
 })
